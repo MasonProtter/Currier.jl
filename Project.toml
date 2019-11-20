@@ -1,0 +1,10 @@
+name = "Currier"
+uuid = "cb39791d-9c1d-4ab4-95cf-e4a86f6cab76"
+authors = ["MasonProtter <mason.protter@gmail.com>"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
