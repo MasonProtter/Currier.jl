@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/MasonProtter/Currier.jl.svg?branch=master)](https://travis-ci.com/MasonProtter/Currier.jl)
+
 # Currier.jl
 
 Julia's multiple dispatch offers a lot of expressive power which is a strict superset of things like currying in Haskell. 
