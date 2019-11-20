@@ -14,7 +14,7 @@ julia> foo(1)(2)(3)
 julia> foo(1, 2, 3)
 0.35714285714285715
 ```
-Here's the (cleaned up) output code from applying `curried` to our definition of `foo`. 
+Here's the (cleaned up) output code from applying `@curried` to our definition of `foo`. 
 ```julia
 julia> @macroexpand @curried foo(x, y, z) = (x^2 + y^2)/(x^2 + y^2 +z^2)
 quote
