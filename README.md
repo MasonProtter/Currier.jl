@@ -7,7 +7,7 @@ using Currier
 
 @curried foo(x, y, z) = (x^2 + y^2)/(x^2 + y^2 +z^2)
 ```
-```
+```julia
 julia> foo(1)(2)(3)
 0.35714285714285715
 
