@@ -34,3 +34,13 @@ quote
     end
 end
 ```
+
+_____
+
+We also have a *reverse* currying macro
+```julia
+@reverse_curried bar(x, y, z) = (x, y, z)
+
+julia> bar(1)(2)(3) == bar(3, 2, 1)
+true
+```
