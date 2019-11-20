@@ -5,10 +5,10 @@ export @curried, @reverse_curried
 struct FullyCurried end
 
 macro curried(fdef)
-    f = fdef.args[1].args[1]
-    fargs = fdef.args[1].args[2:end]
+    f     = esc(fdef.args[1].args[1])
+    fargs = esc.(fdef.args[1].args[2:end])
     arity = length(fargs)
-    body = fdef.args[2]
+    body  = esc(fdef.args[2])
     err_str = "Too many arguments. Function $f only takes $arity arguments"
     quote 
         begin 
@@ -16,21 +16,21 @@ macro curried(fdef)
                 if length(args) < $arity
                     x -> $f((args..., x)...)
                 elseif length(args) == $arity
-                    $f(Currier.FullyCurried(), args...)
+                    $f(FullyCurried(), args...)
                 else
                     throw($err_str)
                 end
             end
-            $f(::Currier.FullyCurried, $(fargs...)) = $body
+            $f(::FullyCurried, $(fargs...)) = $body
         end
-    end |> esc
+    end
 end
 
 macro reverse_curried(fdef)
-    f = fdef.args[1].args[1]
-    fargs = fdef.args[1].args[2:end]
+    f     = esc(fdef.args[1].args[1])
+    fargs = esc.(fdef.args[1].args[2:end])
     arity = length(fargs)
-    body = fdef.args[2]
+    body  = esc(fdef.args[2])
     err_str = "Too many arguments. Function $f only takes $arity arguments"
     quote 
         begin 
@@ -38,14 +38,14 @@ macro reverse_curried(fdef)
                 if length(args) < $arity
                     x -> $f((x, args...)...)
                 elseif length(args) == $arity
-                    $f(Currier.FullyCurried(), args...)
+                    $f(FullyCurried(), args...)
                 else
                     throw($err_str)
                 end
             end
-            $f(::Currier.FullyCurried, $(fargs...)) = $body
+            $f(::FullyCurried, $(fargs...)) = $body
         end
-    end |> esc
+    end
 end
 
 
